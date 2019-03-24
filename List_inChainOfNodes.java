@@ -32,13 +32,16 @@ public class List_inChainOfNodes{
            # elements [element0,element1,element2,]
       */
     public String toString() {
+      Node currentNode = headReference;
       String ans = "";
-      ans += "# elements: " + size();
+      ans += "# elements: " + size() + " ";
       ans += " [";
-      
-      for (int i = 0; i < size; i++){
 
+      for (int i = 0; i < size(); i++){
+        ans += currentNode.toString() + ", ";
+        currentNode = currentNode.getReferenceToNextNode();
       }
+      return ans + "]";
     }
 
 
@@ -47,6 +50,16 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-        return true;
+       if (size() > 0){
+         Node head = new Node(val, headReference.getReferenceToNextNode());
+         System.out.println(head);
+         headReference.setReferenceToNextNode(head);
+       }else{
+         Node head = new Node(val);
+         System.out.println(head == null);
+         this.headReference.setReferenceToNextNode(head);
+       }
+
+       return true;
      }
 }
