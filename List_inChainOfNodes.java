@@ -53,11 +53,11 @@ public class List_inChainOfNodes{
        if (size() > 0){
          Node head = new Node(val, headReference.getReferenceToNextNode());
          System.out.println(head);
-         headReference.setReferenceToNextNode(head);
+         headReference = head;
        }else{
          Node head = new Node(val);
          System.out.println(head == null);
-         this.headReference.setReferenceToNextNode(head);
+         headReference = head;
        }
 
        return true;
