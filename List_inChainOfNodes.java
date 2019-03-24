@@ -17,6 +17,7 @@ public class List_inChainOfNodes{
       Node check = headReference;
       int count = 0;
       if (headReference != null){
+        count++;
         while (check.getReferenceToNextNode() != null){
           count++;
           check = check.getReferenceToNextNode();
@@ -38,7 +39,7 @@ public class List_inChainOfNodes{
       ans += " [";
 
       for (int i = 0; i < size(); i++){
-        ans += currentNode.toString() + ", ";
+        ans += currentNode.toString().substring(0, 1) + ", ";
         currentNode = currentNode.getReferenceToNextNode();
       }
       return ans + "]";
@@ -50,15 +51,9 @@ public class List_inChainOfNodes{
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean addAsHead( Object val) {
-       if (size() > 0){
-         Node head = new Node(val, headReference.getReferenceToNextNode());
-         System.out.println(head);
-         headReference = head;
-       }else{
-         Node head = new Node(val);
-         System.out.println(head == null);
-         headReference = head;
-       }
+        Node head = new Node(val, headReference);
+        headReference = head;
+
 
        return true;
      }
