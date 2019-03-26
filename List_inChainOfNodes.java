@@ -94,16 +94,23 @@ public class List_inChainOfNodes{
        if (index == 0){
          returner = headReference.getCargoReference();
          headReference = headReference.getReferenceToNextNode();
-       }else if (index == size()){
-
-         Node newSecondToLast = headReference;
+       }else if (index == size() - 1){
+         Node secondToLast = headReference;
          for (int counter = 0; counter < index - 2; counter++){
-           newSecondToLast = newSecondToLast.getReferenceToNextNode();
+           secondToLast = secondToLast.getReferenceToNextNode();
          }
-         Node newLastReference = newSecondToLast.getReferenceToNextNode();
+         Node newLastReference = secondToLast.getReferenceToNextNode();
          returner = newLastReference.getReferenceToNextNode().getCargoReference();
          Node newLast = new Node(newLastReference.getCargoReference());
-         newSecondToLast.setReferenceToNextNode(newLast);
+         secondToLast.setReferenceToNextNode(newLast);
+
+         // Node newLastReference = headReference;
+         // for (int counter = 0; counter < index - 1; counter++){
+         //   newLastReference = newLastReference.getReferenceToNextNode();
+         // }
+         // returner = newLastReference.getReferenceToNextNode().getCargoReference();
+         // newLastReference.setReferenceToNextNode(null);
+         // System.out.println(newLastReference);
        }else{
          Node refBefore = headReference;
          for (int counter = 0; counter < index - 1; counter++){
