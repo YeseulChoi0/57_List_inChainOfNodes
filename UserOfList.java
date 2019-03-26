@@ -48,5 +48,7 @@ public class UserOfList {
         System.out.println(list.remove(list.size() - 1));
         System.out.println(list);
 
+
+
     }
 }
