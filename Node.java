@@ -50,4 +50,12 @@ public class Node {
       if (referenceToNextNode != null)
         this.referenceToNextNode = referenceToNextNode;
     }
+
+    public Object getCargoReference(){
+      return cargoReference;
+    }
+
+    public void setValueOfNode(Object newCargoReference){
+      cargoReference = newCargoReference;
+    }
 }

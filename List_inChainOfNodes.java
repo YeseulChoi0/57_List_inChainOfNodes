@@ -39,7 +39,7 @@ public class List_inChainOfNodes{
       ans += " [";
 
       for (int i = 0; i < size(); i++){
-        ans += currentNode.toString().substring(0, 1) + ", ";
+        ans += currentNode.getCargoReference() + ", ";
         currentNode = currentNode.getReferenceToNextNode();
       }
       return ans + "]";
@@ -56,5 +56,66 @@ public class List_inChainOfNodes{
 
 
        return true;
+     }
+
+     public boolean set(int index, Object val){
+       Node referenceAtIndex = headReference;
+       for (int counter = 0; counter < index; counter++){
+         referenceAtIndex = referenceAtIndex.getReferenceToNextNode();
+       }
+       referenceAtIndex.setValueOfNode(val);
+       return true;
+     }
+
+     public Object get(int index){
+       Node referenceAtIndex = headReference;
+       for (int counter = 0; counter < index; counter++){
+         referenceAtIndex = referenceAtIndex.getReferenceToNextNode();
+       }
+       return referenceAtIndex.getCargoReference();
+     }
+
+     public void add(int index, Object val){
+       if (index == 0){
+         addAsHead(val);
+       }else{
+         Node prevReference = headReference;
+         for (int counter = 0; counter < index-1; counter++){
+           prevReference = prevReference.getReferenceToNextNode();
+         }
+         Node referenceAtIndex = prevReference.getReferenceToNextNode();
+         Node newNode = new Node(val, referenceAtIndex);
+         prevReference.setReferenceToNextNode(newNode);
+       }
+     }
+
+     public Object remove(int index){
+       Object returner = 0;
+       if (index == 0){
+         returner = headReference.getCargoReference();
+         headReference = headReference.getReferenceToNextNode();
+       }else if (index == size()){
+
+         Node newSecondToLast = headReference;
+         for (int counter = 0; counter < index - 2; counter++){
+           newSecondToLast = newSecondToLast.getReferenceToNextNode();
+         }
+         Node newLastReference = newSecondToLast.getReferenceToNextNode();
+         returner = newLastReference.getReferenceToNextNode().getCargoReference();
+         Node newLast = new Node(newLastReference.getCargoReference());
+         newSecondToLast.setReferenceToNextNode(newLast);
+       }else{
+         Node refBefore = headReference;
+         for (int counter = 0; counter < index - 1; counter++){
+           refBefore = refBefore.getReferenceToNextNode();
+         }
+         returner = refBefore.getReferenceToNextNode().getCargoReference();
+         Node refAfter = headReference;
+         for (int counter = 0; counter < index + 1; counter++){
+           refAfter = refAfter.getReferenceToNextNode();
+         }
+         refBefore.setReferenceToNextNode(refAfter);
+       }
+       return returner;
      }
 }
